@@ -2,25 +2,38 @@
   "name": "gs-next",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_ENV=dev next dev --turbo -p 5656",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "eslint --fix .",
+    "db:drop": "drizzle-kit drop",
+    "db:check": "drizzle-kit check:mysql",
+    "db:generate": "drizzle-kit generate:mysql",
+    "db:studio": "cross-env NODE_ENV=dev drizzle-kit studio",
+    "db:introspect": "cross-env NODE_ENV=dev drizzle-kit introspect:mysql",
+    "db:migrate": "cross-env NODE_ENV=dev node src/database/migrate.js"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.8",
+    "mysql2": "^3.9.6",
+    "next": "14.2.2",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.2"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cross-env": "^7.0.3",
+    "drizzle-kit": "^0.20.14",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.2"
+    "typescript": "^5"
   }
 }
